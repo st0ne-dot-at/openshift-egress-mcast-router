@@ -2,6 +2,8 @@
 
 set -ex
 
+OPTS=""
+
 if [ -z "${MULTICAST_DESTINATION}" ]; then
     echo "No multicast destination specified"
     exit 1
@@ -11,4 +13,9 @@ if [ -z "${MULTICAST_PORT}" ]; then
     exit 1
 fi
 
-socat -u UDP-RECV:${MULTICAST_PORT} UDP-DATAGRAM:${MULTICAST_DESTINATION}:${MULTICAST_PORT}
+if [ "${VERBOSE}" == "true" ]; then
+    OPTS="${OPTS} -v "
+fi
+
+
+socat ${OPTS} -u UDP-RECV:${MULTICAST_PORT} UDP-DATAGRAM:${MULTICAST_DESTINATION}:${MULTICAST_PORT}
