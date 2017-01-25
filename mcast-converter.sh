@@ -14,7 +14,6 @@ if [ -z "${MULTICAST_PORT}" ]; then
 fi
 
 if [ -z "${MULTICAST_TTL}" ]; then
-    echo "No multicast port specified"
     MULTICAST_TTL=10
 fi
 
