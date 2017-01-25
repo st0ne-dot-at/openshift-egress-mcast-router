@@ -13,9 +13,14 @@ if [ -z "${MULTICAST_PORT}" ]; then
     exit 1
 fi
 
+if [ -z "${MULTICAST_TTL}" ]; then
+    echo "No multicast port specified"
+    MULTICAST_TTL=10
+fi
+
 if [ "${VERBOSE}" == "true" ]; then
     OPTS="${OPTS} -v "
 fi
 
 
-socat ${OPTS} -u UDP-RECV:${MULTICAST_PORT} UDP-DATAGRAM:${MULTICAST_DESTINATION}:${MULTICAST_PORT}
+socat ${OPTS} -u UDP-RECV:${MULTICAST_PORT} UDP-DATAGRAM:${MULTICAST_DESTINATION}:${MULTICAST_PORT},ip-multicast-ttl=${MULTICAST_TTL}
