@@ -9,6 +9,6 @@ RUN INSTALL_PKGS="socat iputils" && \
     rpm -V $INSTALL_PKGS && \
     yum clean all
 
-ADD mcast-converter.sh /bin/mcast-converter.sh
+ADD mcast-router.sh /bin/mcast-router.sh
 
 ENTRYPOINT /bin/mcast-router.sh
