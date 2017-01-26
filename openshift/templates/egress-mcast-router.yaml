@@ -95,28 +95,6 @@ objects:
         restartPolicy: Always
         serviceAccount: ${PRIVILEGED_SERVICEACCOUNT}
         serviceAccountName: ${PRIVILEGED_SERVICEACCOUNT}
-        readinessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - /bin/healthz
-          failureThreshold: 3
-          initialDelaySeconds: 1
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 2
-        livenessProbe:
-          exec:
-            command:
-            - sh
-            - -c
-            - /bin/healthz
-          failureThreshold: 3
-          initialDelaySeconds: 2
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 2
         containers:
         - env:
           - name: MULTICAST_DESTINATION
@@ -136,6 +114,26 @@ objects:
           securityContext:
             privileged: true
           terminationMessagePath: /dev/termination-log
+          readinessProbe:
+            exec:
+              command:
+              - sh
+              - /bin/healthz
+            failureThreshold: 3
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            successThreshold: 2
+            timeoutSeconds: 2
+          livenessProbe:
+            exec:
+              command:
+              - sh
+              - /bin/healthz
+            failureThreshold: 3
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
           resources:
             limits:
               memory: 50Mi
