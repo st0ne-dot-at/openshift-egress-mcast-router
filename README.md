@@ -1,14 +1,35 @@
 # openshift-egress-mulicast
+The
 
+add privileged serviceaccount
+-----------------------------
 
-create multicast router from commandline
+    oc create serviceaccount mcast-router
+
+Edit the SecurityContextConstraint privileged and add the newly created serviceaccount
+
+    oc edit scc privileged 
+
+add:
+
+    - system:serviceaccount:default:mcast-router
+
+check:
+
+    oc get scc privileged  -o yaml
+
+import template
+---------------
+
+    oc create -f https://raw.githubusercontent.com/st0ne-dot-at/openshift-egress-mcast-router/master/openshift/templates/egress-mcast-router.yaml
+
+create multicast router from template
 ----------------------------------------
 
     oc process -n openshift egress-mcast-router \
-        -vNAME=nix,MULTICAST_PORT=5007,VERBOSE=true,PRIVILEGED_SERVICEACCOUNT=ipfailover | oc create -f -
-
+        -vNAME=my-5007-mcast-router,MULTICAST_PORT=5007,VERBOSE=true,PRIVILEGED_SERVICEACCOUNT=mcast-router | oc create -f -
 
 cleanup
 -------
 
-    n=nix; oc delete service ${n}-mcr ; oc delete imagestream ${n}-mcr ; oc delete deploymentconfig ${n}-mcr ; oc delete buildconfig ${n}-mcr
+    n=my-5007-mcast-router; oc delete service ${n}-mcr ; oc delete imagestream ${n}-mcr ; oc delete deploymentconfig ${n}-mcr ; oc delete buildconfig ${n}-mcr
