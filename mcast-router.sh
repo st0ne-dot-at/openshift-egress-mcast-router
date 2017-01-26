@@ -25,7 +25,7 @@ socat ${OPTS} -u UDP-RECV:${MULTICAST_PORT} UDP-DATAGRAM:${MULTICAST_DESTINATION
 SOCAT_PID=$!
 
 IPTABLES_ID="${SOCAT_PID}$$"
-iptables -I INPUT -p udp -s 10.1.0.0/16 --dport ${MULTICAST_PORT} -j ACCEPT -m comment --comment MCR_ID_${IPTABLES_ID}
+echo iptables -I INPUT -p udp -s 10.1.0.0/16 --dport ${MULTICAST_PORT} -j ACCEPT -m comment --comment MCR_ID_${IPTABLES_ID}
 
 trap "{ echo catched term signal; kill -9 $SOCAT_PID; iptables -D INPUT -p udp -s 10.1.0.0/16 --dport ${MULTICAST_PORT} -j ACCEPT -m comment --comment MCR_ID_${IPTABLES_ID}; exit 0; }" EXIT
 
