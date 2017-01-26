@@ -1,5 +1,5 @@
-# openshift-egress-mulicast
-The
+# openshift-egress-mcast-router
+The egress-mcast-router runs a service that forwards incomming unicast udp traffic to a specified destination mulicast address.
 
 add privileged serviceaccount
 -----------------------------
@@ -31,6 +31,12 @@ create multicast router from template
         -vMULTICAST_PORT=5007 \
         -vVERBOSE=true \
         -vPRIVILEGED_SERVICEACCOUNT=mcast-router | oc create -f -
+
+test
+----
+run from any pod in the cluster:
+
+    echo woswasi1234 > /dev/udp/my-5007-mcast-router-mcr.default.svc.cluster.local/5007
 
 cleanup
 -------
