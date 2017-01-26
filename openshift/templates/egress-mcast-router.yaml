@@ -101,6 +101,8 @@ objects:
             value: ${MULTICAST_DESTINATION}
           - name: MULTICAST_PORT
             value: "${MULTICAST_PORT}"
+          - name: MULTICAST_TTL
+            value: "${MULTICAST_TTL}"
           - name: VERBOSE
             value: "${VERBOSE}"
           image: ' '
@@ -165,6 +167,11 @@ parameters:
   name: MULTICAST_DESTINATION
   required: true
   value: 239.255.200.68
+- description: The multicast ttl.
+  displayName: Multicast TTL
+  name: MULTICAST_TTL
+  required: true
+  value: "10"
 - description: The multicast destination port.
   displayName: Multicast Port
   name: MULTICAST_PORT
