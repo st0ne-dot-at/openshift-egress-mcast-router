@@ -27,7 +27,10 @@ create multicast router from template
 ----------------------------------------
 
     oc process -n openshift egress-mcast-router \
-        -vNAME=my-5007-mcast-router,MULTICAST_PORT=5007,VERBOSE=true,PRIVILEGED_SERVICEACCOUNT=mcast-router | oc create -f -
+        -vNAME=my-5007-mcast-router \
+        -vMULTICAST_PORT=5007 \
+        -vVERBOSE=true \
+        -vPRIVILEGED_SERVICEACCOUNT=mcast-router | oc create -f -
 
 cleanup
 -------
