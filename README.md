@@ -6,6 +6,8 @@ The egress-mcast-router runs a service that forwards incomming unicast udp traff
 
 **MULTICAST_PORT**
 
+**MULTICAST_TTL** ... sets the ttl of the outgoing multicast packets
+
 **PRIVILEGED_SERVICEACCOUNT** ... a serviceaccount, that can run privileged containers
 
 
