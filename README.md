@@ -1,5 +1,5 @@
 # openshift-egress-mcast-router
-The egress-mcast-router runs a service that forwards incomming unicast udp traffic to a specified destination mulicast address.
+The egress-mcast-router runs a service that forwards incomming unicast udp traffic (from pods) to a specified destination multicast address (outside the cluster).
 
 ##Template Parameters
 **MULTICAST_DESTINATION** ... multicast destination address (e.g. 239.255.200.68)
@@ -15,7 +15,7 @@ The egress-mcast-router runs a service that forwards incomming unicast udp traff
 
 
 # Example
-In the example the all udp packest sent to the **service my-5007-mcast-router-mcr.default.svc.cluster.local:5007** will be forwarded to the multicast address **239.255.200.68** on port **5007**.
+In the example the all udp packest sent to the service **my-5007-mcast-router-mcr.default.svc.cluster.local:5007** will be forwarded to the multicast address **239.255.200.68** on port **5007**.
 ### Step 1: add privileged serviceaccount
 
     oc create serviceaccount mcast-router
