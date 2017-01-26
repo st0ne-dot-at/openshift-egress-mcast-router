@@ -11,4 +11,4 @@ RUN INSTALL_PKGS="socat iputils" && \
 
 ADD mcast-converter.sh /bin/mcast-converter.sh
 
-ENTRYPOINT /bin/mcast-converter.sh
+ENTRYPOINT /bin/mcast-router.sh
