@@ -9,9 +9,12 @@ The egress-mcast-router runs a service that forwards incomming unicast udp traff
 **PRIVILEGED_SERVICEACCOUNT** ... a serviceaccount, that can run privileged containers
 
 
+
+
+
 # Example
 In the example the all udp packest sent to the **service my-5007-mcast-router-mcr.default.svc.cluster.local:5007** will be forwarded to the multicast address **239.255.200.68** on port **5007**.
-###add privileged serviceaccount
+### Step 1: add privileged serviceaccount
 
     oc create serviceaccount mcast-router
 
@@ -27,11 +30,11 @@ check:
 
     oc get scc privileged  -o yaml
 
-###import template
+### Step 2: import template
 
     oc create -f https://raw.githubusercontent.com/st0ne-dot-at/openshift-egress-mcast-router/master/openshift/templates/egress-mcast-router.yaml
 
-###create multicast router from template
+### Step 3: create multicast router from template
 
     oc process -n openshift egress-mcast-router \
         -vNAME=my-5007-mcast-router \
@@ -39,7 +42,7 @@ check:
         -vVERBOSE=true \
         -vPRIVILEGED_SERVICEACCOUNT=mcast-router | oc create -f -
 
-###test
+### Step 4: test
 run from any pod in the cluster:
 
     echo woswasi1234 > /dev/udp/my-5007-mcast-router-mcr.default.svc.cluster.local/5007
