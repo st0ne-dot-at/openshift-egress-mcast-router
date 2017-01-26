@@ -9,6 +9,8 @@ The egress-mcast-router runs a service that forwards incomming unicast udp traff
 **PRIVILEGED_SERVICEACCOUNT** ... a serviceaccount, that can run privileged containers
 
 
+# Example
+In the example the all udp packest sent to the **service my-5007-mcast-router-mcr.default.svc.cluster.local:5007** will be forwarded to the multicast address **239.255.200.68** on port **5007**.
 ###add privileged serviceaccount
 
     oc create serviceaccount mcast-router
