@@ -93,8 +93,6 @@ objects:
       spec:
         hostNetwork: true
         restartPolicy: Always
-        securityContext:
-          privileged: true
         serviceAccount: ${PRIVILEGED_SERVICEACCOUNT}
         serviceAccountName: ${PRIVILEGED_SERVICEACCOUNT}
         containers:
@@ -113,6 +111,8 @@ objects:
             protocol: UDP
           name: ${NAME}-mcr
           resources: {}
+          securityContext:
+            privileged: true
           terminationMessagePath: /dev/termination-log
           resources:
             limits:
