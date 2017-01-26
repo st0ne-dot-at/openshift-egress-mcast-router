@@ -1,0 +1,2 @@
+ps -p $(cat /tmp/SOCAT_PID)
+exit $?

@@ -10,5 +10,6 @@ RUN INSTALL_PKGS="socat iputils" && \
     yum clean all
 
 ADD mcast-router.sh /bin/mcast-router.sh
+ADD healthz /bin/healthz
 
 ENTRYPOINT /bin/mcast-router.sh
