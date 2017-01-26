@@ -3,7 +3,9 @@ The egress-mcast-router runs a service that forwards incomming unicast udp traff
 
 ##Template Parameters
 **MULTICAST_DESTINATION** ... multicast destination address (e.g. 239.255.200.68)
+
 **MULTICAST_PORT**
+
 **PRIVILEGED_SERVICEACCOUNT** ... a serviceaccount, that can run privileged containers
 
 
